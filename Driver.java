@@ -31,9 +31,24 @@ public class Driver<T> {
         g1.addEdge(7, 8);
         g1.addEdge(8, 5);
 
+        System.out.println("");
+        System.out.println("The graph: {V, E} \nwhere V={ A, B, C, D, E, F, G, H, I }, \nE = { (A,B), (A, D), (A, E), (B, E), (D, G), (E, F), (E, H), (G, H), (F, C), (F, H), (H, I), (C, B), (I, F) }");
+        System.out.println("");
+        System.out.println("--- Breadth-First Traversal ---");
+
+        Queue<Character> BFT = getBreadthFirstTraversal(g1, 0);
+        while (!BFT.isEmpty()){
+
+            System.out.print(BFT.poll() + " ");
+        }
+
+    } // end Main
+
+    public static Queue<Character> getBreadthFirstTraversal(Graph<Character> g, int origin){
+
         // mark all vertices as not visited
         // i match vertex, start at 1
-        boolean[] visited = new boolean[g1.size()];
+        boolean[] visited = new boolean[g.size()];
         for(int i=0; i <visited.length; i++)
             visited[i] = false;
 
@@ -49,25 +64,18 @@ public class Driver<T> {
             // take front
             int frontVertex = vertexQ.poll();
             // load its neighbor into a set
-            int[] neighborVertexSet = g1.neighbors(frontVertex);
+            int[] neighborVertexSet = g.neighbors(frontVertex);
             for (int i=0; i<neighborVertexSet.length; i++){
                 // load neighbor to vertexQueue
                 if(!visited[neighborVertexSet[i]]){
                     vertexQ.add(neighborVertexSet[i]);
                     visited[neighborVertexSet[i]] = true;
-                    bfOrder.add(g1.getLabel(neighborVertexSet[i]));
+                    bfOrder.add(g.getLabel(neighborVertexSet[i]));
                 }
             }
         }
-
-        while (!bfOrder.isEmpty()){
-            System.out.print(bfOrder.poll() + " ");
-        }
-    }
-
-    //public Queue<T> getBreadthFirstTraversal(int origin){
-
-    //}
+        return bfOrder;
+    } // end getBreadthFirstTraversal
 
     //public Queue<T> getDepthFirstTraversal(int origin){
         
