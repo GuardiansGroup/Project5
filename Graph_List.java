@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 /** A directed graph with n vertices can be represented by n different linked lists. */
-public class Graph_LinkedList<T> implements BasicGraphInterface<T> {
+public class Graph_List<T> implements BasicGraphInterface<T> {
     // collection of all vertice presented as linkedList
     private LinkedList<Integer>[] vertexList;
     // collection of labels corresponding to vertice
@@ -9,7 +9,7 @@ public class Graph_LinkedList<T> implements BasicGraphInterface<T> {
     private int size;
 
     @SuppressWarnings("unchecked")
-    public Graph_LinkedList(int n){
+    public Graph_List(int n){
         size = n;
         vertexList = new LinkedList[n];
         for (int i = 0; i < size; i++){

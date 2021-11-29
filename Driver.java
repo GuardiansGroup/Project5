@@ -31,7 +31,7 @@ public class Driver<T> {
         g1.addEdge(8, 5);
 
         // -------------- Create the sample graph using adjacency List representation ---------------
-        Graph_LinkedList<Character> g2 = new Graph_LinkedList<Character>(9);
+        Graph_List<Character> g2 = new Graph_List<Character>(9);
         g2.setLabel(0, 'A');
         g2.setLabel(1, 'B');
         g2.setLabel(2, 'C');
@@ -61,7 +61,7 @@ public class Driver<T> {
         System.out.println("");
         System.out.println("--- Adjacency Matrix Representation ---");
         System.out.println("< Breadth-First Traversal >");
-        
+
         Queue<Character> BFT = getBreadthFirstTraversal(g1, 0);
         while (!BFT.isEmpty()){
 
@@ -113,7 +113,7 @@ public class Driver<T> {
         return bfOrder;
     } // end getBreadthFirstTraversal
 
-    public static Queue<Character> getBreadthFirstTraversal(Graph_LinkedList<Character> g, int origin){
+    public static Queue<Character> getBreadthFirstTraversal(Graph_List<Character> g, int origin){
 
         // mark all vertices as not visited
         // i match vertex, start at 1
