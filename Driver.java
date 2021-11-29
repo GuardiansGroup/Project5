@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -6,7 +5,7 @@ public class Driver<T> {
     public static void main(String[] args) {
 
         // Create the sample graph using adjacency matrix representation
-        Graph<Character> g1 = new Graph<Character>(9);
+        Graph_Matrix<Character> g1 = new Graph_Matrix<Character>(9);
         g1.setLabel(0, 'A');
         g1.setLabel(1, 'B');
         g1.setLabel(2, 'C');
@@ -44,7 +43,7 @@ public class Driver<T> {
 
     } // end Main
 
-    public static Queue<Character> getBreadthFirstTraversal(Graph<Character> g, int origin){
+    public static Queue<Character> getBreadthFirstTraversal(Graph_Matrix<Character> g, int origin){
 
         // mark all vertices as not visited
         // i match vertex, start at 1

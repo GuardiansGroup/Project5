@@ -1,11 +1,11 @@
-public class Graph<T> implements BasicGraphInterface<T> {
+public class Graph_Matrix<T> implements BasicGraphInterface<T> {
     //edges[i][j] is true if there is a vertex from i to j
     private boolean[][] edges;
     // labels[i] contains the label for vertex i
     private T[] labels;
 
     @SuppressWarnings("unchecked")
-    public Graph(int n){
+    public Graph_Matrix(int n){
         // All values initially false
         edges = new boolean [n][n];
         // All values initially null
