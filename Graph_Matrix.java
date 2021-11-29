@@ -1,3 +1,4 @@
+/** An Graph application can examine locations of the matrix to determine which edges are present and which are missing */
 public class Graph_Matrix<T> implements BasicGraphInterface<T> {
     //edges[i][j] is true if there is a vertex from i to j
     private boolean[][] edges;

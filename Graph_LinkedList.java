@@ -15,6 +15,7 @@ public class Graph_LinkedList<T> implements BasicGraphInterface<T> {
         for (int i = 0; i < size; i++){
             vertexList[i] = new LinkedList<>();
         }
+        labels = (T[])new Object[n];
     } // end constructor
 
     public void addEdge(int source, int target){
