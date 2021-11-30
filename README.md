@@ -2,8 +2,9 @@
 Members Contribution :
 
 Daniel Perez
- - 
- -
+ - Adjacency Matrix Representation implementation for depth-first traversal
+ - Adjacency List Representation implementation for depth-first traversal
+ - Java Unit Test Frameworks
  
 Huijun Hu
  -
