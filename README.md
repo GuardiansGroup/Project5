@@ -14,7 +14,8 @@ Huijun Hu
  - Breath First Traversal
  
 Scarlet Mejia
- - 
+ - Helped with Adjacency Matrix Representation implementation for depth-first traversal
+ - Helped with Adjacency List Representation implementation for depth-first traversal
  -
  
 Bonus implementation:
@@ -22,6 +23,7 @@ Bonus implementation:
  - Use of interFace and generic data type
  - Use of both representation
  - Unit testing
- - Screencasting
+ - Screencast
  
-Link to screencast:
+ Screencast link: 
+
