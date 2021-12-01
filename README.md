@@ -19,7 +19,7 @@ Huijun Hu
 Scarlet Mejia
  - Helped with Adjacency Matrix Representation implementation for depth-first traversal
  - Helped with Adjacency List Representation implementation for depth-first traversal
- -
+ - Uploaded Screencast to explain project
  
 Bonus implementation:
  -
