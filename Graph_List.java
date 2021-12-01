@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.*;
 /** A directed graph with n vertices can be represented by n different linked lists. */
 public class Graph_List<T> implements BasicGraphInterface<T> {
     // collection of all vertice presented as linkedList
@@ -33,12 +33,11 @@ public class Graph_List<T> implements BasicGraphInterface<T> {
     } // end removeEdge
  
     public int[] neighbors(int vertex){
-        LinkedList<Integer> temp = this.vertexList[vertex];
-        int counter = temp.size();
-        int[] answer = new int[counter];
+        int length = this.vertexList[vertex].size();
+        int[] answer = new int[length];
 
-        for (int i = 0; i< counter; i++){
-            answer[i] = temp.pop();
+        for (int i = 0; i< length; i++){
+            answer[i] = this.vertexList[vertex].get(i);
         }
 
         return answer;
@@ -56,5 +55,39 @@ public class Graph_List<T> implements BasicGraphInterface<T> {
     public int size(){
         return size;
     } // end size
+
+    void DFS(int s)
+    {
+        // Initially mark all vertices as not visited
+        boolean[] visited = new boolean[size];
+        for (int i = 0; i < size; i++)
+            visited[i] = false;
+ 
+        // Create a stack for DFS
+        Stack<Integer> stack = new Stack<>();
+                 
+        int current = s;
+        stack.push(s);
+        while(!stack.isEmpty())
+        {
+            if (!visited[current]){
+                System.out.print(this.getLabel(current)+ " ");
+                visited[current] = true;
+                current = vertexList[current].poll();
+                while (visited[current]){
+                    if(!(vertexList[current].isEmpty()))
+                    {
+                        current = vertexList[current].poll();
+                    }else if(!stack.empty()){
+                        current = stack.pop();
+                        if (!stack.empty())
+                            current = stack.peek();
+                    }
+                }
+                stack.push(current);  
+            }
+        }
+
+    }
 
 } // end Graph
