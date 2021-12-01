@@ -33,12 +33,11 @@ public class Graph_List<T> implements BasicGraphInterface<T> {
     } // end removeEdge
  
     public int[] neighbors(int vertex){
-        LinkedList<Integer> temp = this.vertexList[vertex];
-        int counter = temp.size();
-        int[] answer = new int[counter];
+        int length = this.vertexList[vertex].size();
+        int[] answer = new int[length];
 
-        for (int i = 0; i< counter; i++){
-            answer[i] = temp.pop();
+        for (int i = 0; i< length; i++){
+            answer[i] = this.vertexList[vertex].get(i);
         }
 
         return answer;
