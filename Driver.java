@@ -4,9 +4,10 @@ public class Driver<T> {
     public static void main(String[] args) {
 
         // -------------- Create the sample graph using adjacency matrix representation -----------------
-        Graph_Matrix<Character> g1 = createMatrixGraph();
-        Graph_List<Character> g2 = createListGraph();
-        Graph_List<Character> g3 = createListGraph();
+        Graph_Matrix<Character> gm1 = createMatrixGraph();
+        Graph_List<Character> gl1 = createListGraph();
+        Graph_Matrix<Character> gm2 = createMatrixGraph();
+        Graph_List<Character> gl2 = createListGraph();
 
         System.out.println("");
         System.out.println("The graph: {V, E} \nwhere V={ A, B, C, D, E, F, G, H, I }, \nE = { (A,B), (A, D), (A, E), (B, E), (D, G), (E, F), (E, H), (G, H), (F, C), (F, H), (H, I), (C, B), (I, F) }");
@@ -14,10 +15,17 @@ public class Driver<T> {
         System.out.println("--- Adjacency Matrix Representation ---");
         System.out.println("< Breadth-First Traversal >");
 
-        Queue<Character> BFT = getBreadthFirstTraversal(g1, 0);
+        Queue<Character> BFT = getBreadthFirstTraversal(gm1, 0);
         while (!BFT.isEmpty()){
 
             System.out.print(BFT.poll() + " ");
+        }
+    
+        System.out.println("\n< Depth-First Traversal >");
+        Queue<Character> DFT = getDepthFirstTraversal(gm2, 0);
+        while (!DFT.isEmpty()){
+
+            System.out.print(DFT.poll() + " ");
         }
 
         System.out.println("");
@@ -25,15 +33,19 @@ public class Driver<T> {
         System.out.println("--- Adjacency List Representation ---");
         System.out.println("< Breadth-First Traversal >");
 
-        Queue<Character> BFT2 = getBreadthFirstTraversal(g2, 0);
+        Queue<Character> BFT2 = getBreadthFirstTraversal(gm2, 0);
         while (!BFT2.isEmpty()){
 
             System.out.print(BFT2.poll() + " ");
         }
                 
-        System.out.println("\n--- Adjacency List Representation ---");
-        System.out.println("< Depth-First Traversal >");
-        g3.DFS(0);
+        System.out.println("\n< Depth-First Traversal >");
+        //g3.DFS(0);
+        Queue<Character> DFT2 = getDepthFirstTraversal(gl2, 0);
+        while (!DFT2.isEmpty()){
+
+            System.out.print(DFT2.poll() + " ");
+        }
     } // end Main
 
     public static Graph_Matrix<Character> createMatrixGraph(){
@@ -104,9 +116,9 @@ public class Driver<T> {
         Queue<Integer> vertexQ = new LinkedList<Integer>();
 
         // origin of the traversal
-        vertexQ.add(0);
-        bfOrder.add('A');
-        visited[0] = true; // mark vertex as visited
+        vertexQ.add(origin);
+        bfOrder.add(g.getLabel(origin));
+        visited[origin] = true; // mark vertex as visited
         
         while(!vertexQ.isEmpty()){
             // take front
@@ -124,7 +136,6 @@ public class Driver<T> {
         }
         return bfOrder;
     } // end getBreadthFirstTraversal
-
     public static Queue<Character> getBreadthFirstTraversal(Graph_List<Character> g, int origin){
 
         // mark all vertices as not visited
@@ -137,9 +148,9 @@ public class Driver<T> {
         Queue<Integer> vertexQ = new LinkedList<Integer>();
 
         // origin of the traversal
-        vertexQ.add(0);
-        bfOrder.add('A');
-        visited[0] = true; // mark vertex as visited
+        vertexQ.add(origin);
+        bfOrder.add(g.getLabel(origin));
+        visited[origin] = true; // mark vertex as visited
         
         while(!vertexQ.isEmpty()){
             // take front
@@ -156,7 +167,88 @@ public class Driver<T> {
             }
         }
         return bfOrder;
-    } // end getBreadthFirstTraversal
-    
+    } // end getBreadthFirstTraversal  
+    public static Queue<Character> getDepthFirstTraversal(Graph_Matrix<Character> g, int origin){
+        // mark all vertices as not visited
+        // i match vertex, start at 1
+        boolean[] visited = new boolean[g.size()];
+        for(int i=0; i <visited.length; i++)
+            visited[i] = false;
+
+        Queue<Character> orderQ = new LinkedList<Character>();
+        Stack<Integer> stack = new Stack<Integer>();
+
+        // origin of the traversal
+        stack.push(origin);
+        orderQ.add(g.getLabel(origin));
+        visited[origin] = true; // mark vertex as visited
+
+        while (!stack.isEmpty()){
+            int current = stack.peek();
+            boolean hasUnvisited = false;
+            int nextNeighbor = -1;
+
+            for (int i = 0; i < g.neighbors(current).length; i++){
+
+                if (!visited[g.neighbors(current)[i]]){
+                    hasUnvisited = true;
+                    nextNeighbor = g.neighbors(current)[i];
+                    break;
+                }
+            }
+            if (hasUnvisited){
+                current = nextNeighbor;
+                visited[current] = true;
+                stack.push(current);
+                orderQ.add(g.getLabel(current));
+            }
+            else{
+                stack.pop();
+            }
+        }
+
+        return orderQ;
+    }
+    public static Queue<Character> getDepthFirstTraversal(Graph_List<Character> g, int origin){
+        // mark all vertices as not visited
+        // i match vertex, start at 1
+        boolean[] visited = new boolean[g.size()];
+        for(int i=0; i <visited.length; i++)
+            visited[i] = false;
+
+        Queue<Character> orderQ = new LinkedList<Character>();
+        Stack<Integer> stack = new Stack<Integer>();
+
+        // origin of the traversal
+        stack.push(origin);
+        orderQ.add(g.getLabel(origin));
+        visited[origin] = true; // mark vertex as visited
+
+        while (!stack.isEmpty()){
+            int current = stack.peek();
+            boolean hasUnvisited = false;
+            int nextNeighbor = -1;
+
+            for (int i = 0; i < g.neighbors(current).length; i++){
+
+                if (!visited[g.neighbors(current)[i]]){
+                    hasUnvisited = true;
+                    nextNeighbor = g.neighbors(current)[i];
+                    break;
+                }
+            }
+            if (hasUnvisited){
+                current = nextNeighbor;
+                visited[current] = true;
+                stack.push(current);
+                orderQ.add(g.getLabel(current));
+            }
+            else{
+                stack.pop();
+            }
+        }
+
+        return orderQ;
+    }
 
 }
