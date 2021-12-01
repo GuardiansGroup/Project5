@@ -11,7 +11,9 @@ Huijun Hu
  - Java Interface and Generic Data Type
  - Adjacency Matrix Representation implementation
  - Adjacency List Representation implementation
- - Breath First Traversal
+ - Helped with implementation for depth-first traversal
+ - Breath First Traversal for Adjacency Matrix Representation implementation
+ - Breath First Traversal for Adjacency List Representation implementation
  
 Scarlet Mejia
  - Helped with Adjacency Matrix Representation implementation for depth-first traversal
